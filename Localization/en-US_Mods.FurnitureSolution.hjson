@@ -1,0 +1,262 @@
+Items: {
+	SolarSolution: {
+		DisplayName: Solar Solution
+		Tooltip: ""
+	}
+
+	NebulaSolution: {
+		DisplayName: Nebula Solution
+		Tooltip: ""
+	}
+
+	StardustSolution: {
+		DisplayName: Stardust Solution
+		Tooltip: ""
+	}
+
+	VortexSolution: {
+		DisplayName: Vortex Solution
+		Tooltip: ""
+	}
+
+	WoodSolution: {
+		DisplayName: Wood Solution
+		Tooltip: ""
+	}
+
+	BaloonSolution: {
+		DisplayName: Baloon Solution
+		Tooltip: ""
+	}
+
+	GoldenSolution: {
+		DisplayName: Golden Solution
+		Tooltip: ""
+	}
+
+	BlueDungeonSolution: {
+		DisplayName: Blue Dungeon Solution
+		Tooltip: ""
+	}
+
+	GreenDungeonSolution: {
+		DisplayName: Green Dungeon Solution
+		Tooltip: ""
+	}
+
+	PinkDungeonSolution: {
+		DisplayName: Pink Dungeon Solution
+		Tooltip: ""
+	}
+
+	BoneSolution: {
+		DisplayName: Bone Solution
+		Tooltip: ""
+	}
+
+	CrystalSolution: {
+		DisplayName: Crystal Solution
+		Tooltip: ""
+	}
+
+	FleshSolution: {
+		DisplayName: Flesh Solution
+		Tooltip: ""
+	}
+
+	FrozenSolution: {
+		DisplayName: Frozen Solution
+		Tooltip: ""
+	}
+
+	GraniteSolution: {
+		DisplayName: Granite Solution
+		Tooltip: ""
+	}
+
+	LesionSolution: {
+		DisplayName: Lesion Solution
+		Tooltip: ""
+	}
+
+	MarbleSolution: {
+		DisplayName: Marble Solution
+		Tooltip: ""
+	}
+
+	ObsidianSolution: {
+		DisplayName: Obsidian Solution
+		Tooltip: ""
+	}
+
+	ReefSolution: {
+		DisplayName: Reef Solution
+		Tooltip: ""
+	}
+
+	SandstoneSolution: {
+		DisplayName: Sandstone Solution
+		Tooltip: ""
+	}
+
+	BambooSolution: {
+		DisplayName: Bamboo Solution
+		Tooltip: ""
+	}
+
+	CactusSolution: {
+		DisplayName: Cactus Solution
+		Tooltip: ""
+	}
+
+	MushroomSolution: {
+		DisplayName: Mushroom Solution
+		Tooltip: ""
+	}
+
+	PumpkinSolution: {
+		DisplayName: Pumpkin Solution
+		Tooltip: ""
+	}
+
+	GlassSolution: {
+		DisplayName: Glass Solution
+		Tooltip: ""
+	}
+
+	HoneySolution: {
+		DisplayName: Honey Solution
+		Tooltip: ""
+	}
+
+	LihzahrdSolution: {
+		DisplayName: Lihzahrd Solution
+		Tooltip: ""
+	}
+
+	MatrianSolution: {
+		DisplayName: Matrian Solution
+		Tooltip: ""
+	}
+
+	MetoriteSolution: {
+		DisplayName: Metorite Solution
+		Tooltip: ""
+	}
+
+	SkywareSolution: {
+		DisplayName: Skyware Solution
+		Tooltip: ""
+	}
+
+	SlimeSolution: {
+		DisplayName: Slime Solution
+		Tooltip: ""
+	}
+
+	SpiderSolution: {
+		DisplayName: Spider Solution
+		Tooltip: ""
+	}
+
+	SteampunkSolution: {
+		DisplayName: Steampunk Solution
+		Tooltip: ""
+	}
+
+	AshWoodSolution: {
+		DisplayName: Ash Wood Solution
+		Tooltip: ""
+	}
+
+	BorealWoodSolution: {
+		DisplayName: Boreal Wood Solution
+		Tooltip: ""
+	}
+
+	DynastyWoodSolution: {
+		DisplayName: Dynasty Wood Solution
+		Tooltip: ""
+	}
+
+	EbonWoodSolution: {
+		DisplayName: Ebon Wood Solution
+		Tooltip: ""
+	}
+
+	LivingWoodSolution: {
+		DisplayName: Living Wood Solution
+		Tooltip: ""
+	}
+
+	PalmWoodSolution: {
+		DisplayName: Palm Wood Solution
+		Tooltip: ""
+	}
+
+	PearlWoodSolution: {
+		DisplayName: Pearl Wood Solution
+		Tooltip: ""
+	}
+
+	RichMahoganySolution: {
+		DisplayName: Rich Mahogany Solution
+		Tooltip: ""
+	}
+
+	ShadeWoodSolution: {
+		DisplayName: Shade Wood Solution
+		Tooltip: ""
+	}
+
+	SkookyWoodSolution: {
+		DisplayName: Skooky Wood Solution
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	SolarSolutionProjectile.DisplayName: Solar Solution Projectile
+	NebulaSolutionProjectile.DisplayName: Nebula Solution Projectile
+	StardustSolutionProjectile.DisplayName: Stardust Solution Projectile
+	VortexSolutionProjectile.DisplayName: Vortex Solution Projectile
+	WoodSolutionProjectile.DisplayName: Wood Solution Projectile
+	BaloonSolutionProjectile.DisplayName: Baloon Solution Projectile
+	GoldenSolutionProjectile.DisplayName: Golden Solution Projectile
+	BlueDungeonSolutionProjectile.DisplayName: Blue Dungeon Solution Projectile
+	GreenDungeonSolutionProjectile.DisplayName: Green Dungeon Solution Projectile
+	PinkDungeonSolutionProjectile.DisplayName: Pink Dungeon Solution Projectile
+	BoneSolutionProjectile.DisplayName: Bone Solution Projectile
+	CrystalSolutionProjectile.DisplayName: Crystal Solution Projectile
+	FleshSolutionProjectile.DisplayName: Flesh Solution Projectile
+	FrozenSolutionProjectile.DisplayName: Frozen Solution Projectile
+	GraniteSolutionProjectile.DisplayName: Granite Solution Projectile
+	LesionSolutionProjectile.DisplayName: Lesion Solution Projectile
+	MarbleSolutionProjectile.DisplayName: Marble Solution Projectile
+	ObsidianSolutionProjectile.DisplayName: Obsidian Solution Projectile
+	ReefSolutionProjectile.DisplayName: Reef Solution Projectile
+	SandstoneSolutionProjectile.DisplayName: Sandstone Solution Projectile
+	BambooSolutionProjectile.DisplayName: Bamboo Solution Projectile
+	CactusSolutionProjectile.DisplayName: Cactus Solution Projectile
+	MushroomSolutionProjectile.DisplayName: Mushroom Solution Projectile
+	PumpkinSolutionProjectile.DisplayName: Pumpkin Solution Projectile
+	GlassSolutionProjectile.DisplayName: Glass Solution Projectile
+	HoneySolutionProjectile.DisplayName: Honey Solution Projectile
+	LihzahrdSolutionProjectile.DisplayName: Lihzahrd Solution Projectile
+	MatrianSolutionProjectile.DisplayName: Matrian Solution Projectile
+	MetoriteSolutionProjectile.DisplayName: Metorite Solution Projectile
+	SkywareSolutionProjectile.DisplayName: Skyware Solution Projectile
+	SlimeSolutionProjectile.DisplayName: Slime Solution Projectile
+	SpiderSolutionProjectile.DisplayName: Spider Solution Projectile
+	SteampunkSolutionProjectile.DisplayName: Steampunk Solution Projectile
+	AshWoodSolutionProjectile.DisplayName: Ash Wood Solution Projectile
+	BorealWoodSolutionProjectile.DisplayName: Boreal Wood Solution Projectile
+	DynastyWoodSolutionProjectile.DisplayName: Dynasty Wood Solution Projectile
+	EbonWoodSolutionProjectile.DisplayName: Ebon Wood Solution Projectile
+	LivingWoodSolutionProjectile.DisplayName: Living Wood Solution Projectile
+	PalmWoodSolutionProjectile.DisplayName: Palm Wood Solution Projectile
+	PearlWoodSolutionProjectile.DisplayName: Pearl Wood Solution Projectile
+	RichMahoganySolutionProjectile.DisplayName: Rich Mahogany Solution Projectile
+	ShadeWoodSolutionProjectile.DisplayName: Shade Wood Solution Projectile
+	SkookyWoodSolutionProjectile.DisplayName: Skooky Wood Solution Projectile
+}

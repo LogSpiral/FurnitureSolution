@@ -1,0 +1,56 @@
+// WoodSolutions
+Wood, 0, ItemID.Wood, DustID.WoodFurniture
+BorealWood, 4, ItemID.BorealWood, DustID.BorealWood
+PalmWood, 22, ItemID.PalmWood, DustID.PalmWood
+RichMahogany, 2, ItemID.RichMahogany, DustID.RichMahogany
+ShadeWood, 10, ItemID.Shadewood, DustID.Shadewood
+EbonWood, 1, ItemID.Ebonwood, DustID.Ebonwood
+PearlWood, 3, ItemID.Pearlwood, DustID.Pearlwood
+AshWood, 42, ItemID.AshWood, DustID.Ash
+SkookyWood, 17, ItemID.SpookyWood, DustID.SpookyWood
+DynastyWood, 18, ItemID.DynastyWood, DustID.DynastyWood
+LivingWood, 25, ItemID.Wood, DustID.Grass
+
+// PlantSolutions
+Bamboo, 39, ItemID.BambooBlock, DustID.JungleGrass
+Cactus, 6, ItemID.Cactus, DustID.OasisCactus
+Pumpkin, 16, ItemID.Pumpkin, DustID.Pumpkin
+Mushroom, 8, ItemID.GlowingMushroom, DustID.GlowingMushroom
+
+// EnvironmentSolutions
+Granite, 29, ItemID.Granite, DustID.Granite
+Marble, 28, ItemID.Marble, DustID.Marble
+Sandstone, 38, ItemID.Sandstone, DustID.Sand
+Frozen, 20, ItemID.IceBlock, DustID.Ice
+Reef, 40, ItemID.ReefBlock, DustID.PinkSlime
+Lesion, 33, ItemID.LesionBlock, DustID.Demonite
+Flesh, 7, ItemID.FleshBlock, DustID.Crimson
+Bone, 5, ItemID.Bone, DustID.Bone
+Crystal, 30, ItemID.CrystalShard, DustID.PurpleCrystalShard
+Obsidian, 15, ItemID.Obsidian, DustID.Obsidian
+
+// ThemedSolutions
+Matrian, 26, ItemID.MartianConduitPlating, DustID.Electric
+Metorite, 27, ItemID.MeteoriteBrick, DustID.Meteorite
+Skyware, 23, ItemID.SunplateBlock, DustID.YellowStarDust
+Glass, 24, ItemID.Glass, DustID.Glass
+Lihzahrd, 11, ItemID.LihzahrdBrick, DustID.Lihzahrd
+Steampunk, 21, ItemID.Cog, DustID.Tin
+Spider, 32, ItemID.SpiderBlock, DustID.Web
+Honey, 19, ItemID.HoneyBlock, DustID.Honey
+Slime, 9, ItemID.SlimeBlock, DustID.BlueMoss
+
+// DecorateSolutions
+Golden, 31, ItemID.GoldDust, DustID.Gold
+Baloon, 41, ItemID.SillyBalloonPurple, DustID.PurpleMoss
+
+// DungeonSolutions
+BlueDungeon, 12, ItemID.BlueBrick, DustID.DungeonBlue
+GreenDungeon, 13, ItemID.GreenBrick, DustID.DungeonGreen
+PinkDungeon, 14, ItemID.PinkBrick, DustID.DungeonPink
+
+// LunarSolutions
+Solar, 34, ItemID.SolarBrick, DustID.SolarFlare
+Vortex, 35, ItemID.VortexBrick, DustID.Vortex
+Nebula, 36, ItemID.NebulaBrick, DustID.PurpleTorch
+Stardust, 37, ItemID.StardustBrick, DustID.BlueTorch

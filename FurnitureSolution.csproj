@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Import tModLoader mod properties -->
+	<Import Project="..\tModLoader.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+		
+	</PropertyGroup>
+	<ItemGroup>
+	  <AdditionalFiles Include="SolutionRegisterTable.registerTable" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\FurnitureSolutionAnalyzer\FurnitureSolutionAnalyzer.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Solutions\DecorateSolutions\" />
+	  <Folder Include="Solutions\WoodSolutions\" />
+	  <Folder Include="Solutions\EnvironmentSolutions\" />
+	  <Folder Include="Solutions\DungeonSolutions\" />
+	  <Folder Include="Solutions\PlantSolutions\" />
+	  <Folder Include="Solutions\ThemedSolutions\" />
+	</ItemGroup>
+	<!-- References -->
+
+</Project>

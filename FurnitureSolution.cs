@@ -7,13 +7,21 @@ using Terraria.ModLoader;
 namespace FurnitureSolution;
 
 // Please read https://github.com/tModLoader/tModLoader/wiki/Basic-tModLoader-Modding-Guide#mod-skeleton-contents for more information about the various files in a mod.
-public class FurnitureSolution : Mod
+public partial class FurnitureSolution : Mod
 {
     public static short[,] FurnitureTable { get; private set; }
     public static FurnitureSetData[] FurnitureSets { get; private set; }
 
 
     public override void Load()
+    {
+        InitializeFurnitureData();
+        if (ModLoader.TryGetMod("TouhouPets", out var touhouPets))
+            RegisterYukaSolution(touhouPets);
+        base.Load();
+    }
+
+    private void InitializeFurnitureData()
     {
         FurnitureTable = new short[43, 22];
         FurnitureSets = new FurnitureSetData[43];
@@ -27,16 +35,16 @@ public class FurnitureSolution : Mod
         foreach (string line in lines)
         {
             ref FurnitureSetData furniture = ref FurnitureSets[counter];
-            string[] contents = line.Replace(new string([(char)65279]),"").Split(','); // ¹µ²ÛµÄBOM
+            string[] contents = line.Replace(new string([(char)65279]), "").Split(','); // ¹µ²ÛµÄBOM
             for (int n = 0; n < 22; n++)
             {
                 string current = contents[n];
                 if (n == 21)
                     current = current.Replace("\r", "");
-                
+
                 var value = (short)int.Parse(current);
 
-                FurnitureTable[counter,n] = value;
+                FurnitureTable[counter, n] = value;
 
                 switch (n)
                 {
@@ -132,7 +140,6 @@ public class FurnitureSolution : Mod
             }
             counter++;
         }
-        base.Load();
     }
 
     public static HashSet<short> TileInSet { get; } = [];

@@ -1,17 +1,16 @@
-﻿using Terraria.ID;
+﻿using System.Collections.Generic;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FurnitureSolution.Solutions.Core;
 
 public abstract class SolutionItemBase(int projectileType) : ModItem
 {
-    // TODO 每个物品都画上相应贴图
-    public override string Texture => $"Terraria/Images/Item_{ItemID.GreenSolution}";
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 99;
     }
-
     public override void SetDefaults()
     {
         Item.DefaultToSolution(projectileType);

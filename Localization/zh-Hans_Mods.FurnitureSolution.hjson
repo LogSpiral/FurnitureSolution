@@ -1,0 +1,434 @@
+Items: {
+	WoodSolution: {
+		DisplayName: 木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为木家具套装
+			'''
+	}
+
+	BorealWoodSolution: {
+		DisplayName: 针叶木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为针叶木家具套装
+			'''
+	}
+
+	PalmWoodSolution: {
+		DisplayName: 棕榈木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为棕榈木家具套装
+			'''
+	}
+
+	RichMahoganySolution: {
+		DisplayName: 红木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为红木家具套装
+			'''
+	}
+
+	ShadeWoodSolution: {
+		DisplayName: 暗影木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为暗影木家具套装
+			'''
+	}
+
+	EbonWoodSolution: {
+		DisplayName: 乌木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为乌木家具套装
+			'''
+	}
+
+	PearlWoodSolution: {
+		DisplayName: 珍珠木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为珍珠木家具套装
+			'''
+	}
+
+	AshWoodSolution: {
+		DisplayName: 白蜡木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为白蜡木家具套装
+			'''
+	}
+
+	SkookyWoodSolution: {
+		DisplayName: 阴森木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为阴森木家具套装
+			'''
+	}
+
+	DynastyWoodSolution: {
+		DisplayName: 王朝木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为王朝木家具套装
+			'''
+	}
+
+	LivingWoodSolution: {
+		DisplayName: 生命木溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为生命木家具套装
+			'''
+	}
+
+	BambooSolution: {
+		DisplayName: 竹溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为竹家具套装
+			'''
+	}
+
+	CactusSolution: {
+		DisplayName: 仙人掌溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为仙人掌家具套装
+			'''
+	}
+
+	PumpkinSolution: {
+		DisplayName: 南瓜溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为南瓜家具套装
+			'''
+	}
+
+	MushroomSolution: {
+		DisplayName: 蘑菇溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为蘑菇家具套装
+			'''
+	}
+
+	GraniteSolution: {
+		DisplayName: 花岗岩溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为花岗岩家具套装
+			'''
+	}
+
+	MarbleSolution: {
+		DisplayName: 大理石溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为大理石家具套装
+			'''
+	}
+
+	SandstoneSolution: {
+		DisplayName: 沙岩溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为沙岩家具套装
+			'''
+	}
+
+	FrozenSolution: {
+		DisplayName: 冰冻溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为冰冻家具套装
+			'''
+	}
+
+	ReefSolution: {
+		DisplayName: 礁石溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为礁石家具套装
+			'''
+	}
+
+	LesionSolution: {
+		DisplayName: 损伤溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为损伤家具套装
+			'''
+	}
+
+	FleshSolution: {
+		DisplayName: 血肉溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为血肉家具套装
+			'''
+	}
+
+	BoneSolution: {
+		DisplayName: 骨头溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为骨头家具套装
+			'''
+	}
+
+	CrystalSolution: {
+		DisplayName: 水晶溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为水晶家具套装
+			'''
+	}
+
+	ObsidianSolution: {
+		DisplayName: 黑曜石溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为黑曜石家具套装
+			'''
+	}
+
+	MatrianSolution: {
+		DisplayName: 火星溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为火星家具套装
+			'''
+	}
+
+	MetoriteSolution: {
+		DisplayName: 陨石溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为陨石家具套装
+			'''
+	}
+
+	SkywareSolution: {
+		DisplayName: 天域溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为天域家具套装
+			'''
+	}
+
+	GlassSolution: {
+		DisplayName: 玻璃溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为玻璃家具套装
+			'''
+	}
+
+	LihzahrdSolution: {
+		DisplayName: 丛林蜥蜴溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为丛林蜥蜴家具套装
+			'''
+	}
+
+	SteampunkSolution: {
+		DisplayName: 蒸汽朋克溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为蒸汽朋克家具套装
+			'''
+	}
+
+	SpiderSolution: {
+		DisplayName: 蜘蛛溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为蜘蛛家具套装
+			'''
+	}
+
+	HoneySolution: {
+		DisplayName: 蜂蜜溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为蜂蜜家具套装
+			'''
+	}
+
+	SlimeSolution: {
+		DisplayName: 史莱姆溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为史莱姆家具套装
+			'''
+	}
+
+	GoldenSolution: {
+		DisplayName: 金色溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为金色家具套装
+			'''
+	}
+
+	BaloonSolution: {
+		DisplayName: 气球溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为气球家具套装
+			'''
+	}
+
+	BlueDungeonSolution: {
+		DisplayName: 蓝地牢溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为蓝地牢家具套装
+			'''
+	}
+
+	GreenDungeonSolution: {
+		DisplayName: 绿地牢溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为绿地牢家具套装
+			'''
+	}
+
+	PinkDungeonSolution: {
+		DisplayName: 粉地牢溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为粉地牢家具套装
+			'''
+	}
+
+	SolarSolution: {
+		DisplayName: 日耀溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为日耀家具套装
+			'''
+	}
+
+	VortexSolution: {
+		DisplayName: 星旋溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为星旋家具套装
+			'''
+	}
+
+	NebulaSolution: {
+		DisplayName: 星云溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为星云家具套装
+			'''
+	}
+
+	StardustSolution: {
+		DisplayName: 星尘溶液
+		Tooltip:
+			'''
+			由环境改造枪使用
+			将家具转变为星尘家具套装
+			'''
+	}
+}
+
+Projectiles: {
+	WoodSolutionProjectile.DisplayName: 木溶液
+	BorealWoodSolutionProjectile.DisplayName: 针叶木溶液
+	PalmWoodSolutionProjectile.DisplayName: 棕榈木溶液
+	RichMahoganySolutionProjectile.DisplayName: 红木溶液
+	ShadeWoodSolutionProjectile.DisplayName: 暗影木溶液
+	EbonWoodSolutionProjectile.DisplayName: 乌木溶液
+	PearlWoodSolutionProjectile.DisplayName: 珍珠木溶液
+	AshWoodSolutionProjectile.DisplayName: 白蜡木溶液
+	SkookyWoodSolutionProjectile.DisplayName: 阴森木溶液
+	DynastyWoodSolutionProjectile.DisplayName: 王朝木溶液
+	LivingWoodSolutionProjectile.DisplayName: 生命木溶液
+	BambooSolutionProjectile.DisplayName: 竹溶液
+	CactusSolutionProjectile.DisplayName: 仙人掌溶液
+	PumpkinSolutionProjectile.DisplayName: 南瓜溶液
+	MushroomSolutionProjectile.DisplayName: 蘑菇溶液
+	GraniteSolutionProjectile.DisplayName: 花岗岩溶液
+	MarbleSolutionProjectile.DisplayName: 大理石溶液
+	SandstoneSolutionProjectile.DisplayName: 沙岩溶液
+	FrozenSolutionProjectile.DisplayName: 冰冻溶液
+	ReefSolutionProjectile.DisplayName: 礁石溶液
+	LesionSolutionProjectile.DisplayName: 损伤溶液
+	FleshSolutionProjectile.DisplayName: 血肉溶液
+	BoneSolutionProjectile.DisplayName: 骨头溶液
+	CrystalSolutionProjectile.DisplayName: 水晶溶液
+	ObsidianSolutionProjectile.DisplayName: 黑曜石溶液
+	MatrianSolutionProjectile.DisplayName: 火星溶液
+	MetoriteSolutionProjectile.DisplayName: 陨石溶液
+	SkywareSolutionProjectile.DisplayName: 天域溶液
+	GlassSolutionProjectile.DisplayName: 玻璃溶液
+	LihzahrdSolutionProjectile.DisplayName: 丛林蜥蜴溶液
+	SteampunkSolutionProjectile.DisplayName: 蒸汽朋克溶液
+	SpiderSolutionProjectile.DisplayName: 蜘蛛溶液
+	HoneySolutionProjectile.DisplayName: 蜂蜜溶液
+	SlimeSolutionProjectile.DisplayName: 史莱姆溶液
+	GoldenSolutionProjectile.DisplayName: 金色溶液
+	BaloonSolutionProjectile.DisplayName: 气球溶液
+	BlueDungeonSolutionProjectile.DisplayName: 蓝地牢溶液
+	GreenDungeonSolutionProjectile.DisplayName: 绿地牢溶液
+	PinkDungeonSolutionProjectile.DisplayName: 粉地牢溶液
+	SolarSolutionProjectile.DisplayName: 日耀溶液
+	VortexSolutionProjectile.DisplayName: 星旋溶液
+	NebulaSolutionProjectile.DisplayName: 星云溶液
+	StardustSolutionProjectile.DisplayName: 星尘溶液
+}

@@ -17,15 +17,6 @@
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Solutions\DecorateSolutions\" />
-	  <Folder Include="Solutions\WoodSolutions\" />
-	  <Folder Include="Solutions\EnvironmentSolutions\" />
-	  <Folder Include="Solutions\DungeonSolutions\" />
-	  <Folder Include="Solutions\PlantSolutions\" />
-	  <Folder Include="Solutions\ThemedSolutions\" />
-	</ItemGroup>
 	<!-- References -->
 
 </Project>

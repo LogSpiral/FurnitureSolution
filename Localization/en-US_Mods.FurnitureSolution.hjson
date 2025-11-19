@@ -1,262 +1,434 @@
 Items: {
-	SolarSolution: {
-		DisplayName: Solar Solution
-		Tooltip: ""
-	}
-
-	NebulaSolution: {
-		DisplayName: Nebula Solution
-		Tooltip: ""
-	}
-
-	StardustSolution: {
-		DisplayName: Stardust Solution
-		Tooltip: ""
-	}
-
-	VortexSolution: {
-		DisplayName: Vortex Solution
-		Tooltip: ""
-	}
-
 	WoodSolution: {
 		DisplayName: Wood Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Wood Set
+			'''
 	}
 
-	BaloonSolution: {
-		DisplayName: Baloon Solution
-		Tooltip: ""
+	BorealWoodSolution: {
+		DisplayName: BorealWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into BorealWood Set
+			'''
 	}
 
-	GoldenSolution: {
-		DisplayName: Golden Solution
-		Tooltip: ""
+	PalmWoodSolution: {
+		DisplayName: PalmWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into PalmWood Set
+			'''
 	}
 
-	BlueDungeonSolution: {
-		DisplayName: Blue Dungeon Solution
-		Tooltip: ""
+	RichMahoganySolution: {
+		DisplayName: RichMahogany Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into RichMahogany Set
+			'''
 	}
 
-	GreenDungeonSolution: {
-		DisplayName: Green Dungeon Solution
-		Tooltip: ""
+	ShadeWoodSolution: {
+		DisplayName: ShadeWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into ShadeWood Set
+			'''
 	}
 
-	PinkDungeonSolution: {
-		DisplayName: Pink Dungeon Solution
-		Tooltip: ""
+	EbonWoodSolution: {
+		DisplayName: EbonWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into EbonWood Set
+			'''
 	}
 
-	BoneSolution: {
-		DisplayName: Bone Solution
-		Tooltip: ""
+	PearlWoodSolution: {
+		DisplayName: PearlWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into PearlWood Set
+			'''
 	}
 
-	CrystalSolution: {
-		DisplayName: Crystal Solution
-		Tooltip: ""
+	AshWoodSolution: {
+		DisplayName: AshWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into AshWood Set
+			'''
 	}
 
-	FleshSolution: {
-		DisplayName: Flesh Solution
-		Tooltip: ""
+	SkookyWoodSolution: {
+		DisplayName: SkookyWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into SkookyWood Set
+			'''
 	}
 
-	FrozenSolution: {
-		DisplayName: Frozen Solution
-		Tooltip: ""
+	DynastyWoodSolution: {
+		DisplayName: DynastyWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into DynastyWood Set
+			'''
 	}
 
-	GraniteSolution: {
-		DisplayName: Granite Solution
-		Tooltip: ""
-	}
-
-	LesionSolution: {
-		DisplayName: Lesion Solution
-		Tooltip: ""
-	}
-
-	MarbleSolution: {
-		DisplayName: Marble Solution
-		Tooltip: ""
-	}
-
-	ObsidianSolution: {
-		DisplayName: Obsidian Solution
-		Tooltip: ""
-	}
-
-	ReefSolution: {
-		DisplayName: Reef Solution
-		Tooltip: ""
-	}
-
-	SandstoneSolution: {
-		DisplayName: Sandstone Solution
-		Tooltip: ""
+	LivingWoodSolution: {
+		DisplayName: LivingWood Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into LivingWood Set
+			'''
 	}
 
 	BambooSolution: {
 		DisplayName: Bamboo Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Bamboo Set
+			'''
 	}
 
 	CactusSolution: {
 		DisplayName: Cactus Solution
-		Tooltip: ""
-	}
-
-	MushroomSolution: {
-		DisplayName: Mushroom Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Cactus Set
+			'''
 	}
 
 	PumpkinSolution: {
 		DisplayName: Pumpkin Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Pumpkin Set
+			'''
 	}
 
-	GlassSolution: {
-		DisplayName: Glass Solution
-		Tooltip: ""
+	MushroomSolution: {
+		DisplayName: Mushroom Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Mushroom Set
+			'''
 	}
 
-	HoneySolution: {
-		DisplayName: Honey Solution
-		Tooltip: ""
+	GraniteSolution: {
+		DisplayName: Granite Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Granite Set
+			'''
 	}
 
-	LihzahrdSolution: {
-		DisplayName: Lihzahrd Solution
-		Tooltip: ""
+	MarbleSolution: {
+		DisplayName: Marble Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Marble Set
+			'''
+	}
+
+	SandstoneSolution: {
+		DisplayName: Sandstone Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Sandstone Set
+			'''
+	}
+
+	FrozenSolution: {
+		DisplayName: Frozen Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Frozen Set
+			'''
+	}
+
+	ReefSolution: {
+		DisplayName: Reef Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Reef Set
+			'''
+	}
+
+	LesionSolution: {
+		DisplayName: Lesion Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Lesion Set
+			'''
+	}
+
+	FleshSolution: {
+		DisplayName: Flesh Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Flesh Set
+			'''
+	}
+
+	BoneSolution: {
+		DisplayName: Bone Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Bone Set
+			'''
+	}
+
+	CrystalSolution: {
+		DisplayName: Crystal Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Crystal Set
+			'''
+	}
+
+	ObsidianSolution: {
+		DisplayName: Obsidian Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Obsidian Set
+			'''
 	}
 
 	MatrianSolution: {
 		DisplayName: Matrian Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Matrian Set
+			'''
 	}
 
 	MetoriteSolution: {
 		DisplayName: Metorite Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Metorite Set
+			'''
 	}
 
 	SkywareSolution: {
 		DisplayName: Skyware Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Skyware Set
+			'''
 	}
 
-	SlimeSolution: {
-		DisplayName: Slime Solution
-		Tooltip: ""
+	GlassSolution: {
+		DisplayName: Glass Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Glass Set
+			'''
 	}
 
-	SpiderSolution: {
-		DisplayName: Spider Solution
-		Tooltip: ""
+	LihzahrdSolution: {
+		DisplayName: Lihzahrd Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Lihzahrd Set
+			'''
 	}
 
 	SteampunkSolution: {
 		DisplayName: Steampunk Solution
-		Tooltip: ""
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Steampunk Set
+			'''
 	}
 
-	AshWoodSolution: {
-		DisplayName: Ash Wood Solution
-		Tooltip: ""
+	SpiderSolution: {
+		DisplayName: Spider Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Spider Set
+			'''
 	}
 
-	BorealWoodSolution: {
-		DisplayName: Boreal Wood Solution
-		Tooltip: ""
+	HoneySolution: {
+		DisplayName: Honey Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Honey Set
+			'''
 	}
 
-	DynastyWoodSolution: {
-		DisplayName: Dynasty Wood Solution
-		Tooltip: ""
+	SlimeSolution: {
+		DisplayName: Slime Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Slime Set
+			'''
 	}
 
-	EbonWoodSolution: {
-		DisplayName: Ebon Wood Solution
-		Tooltip: ""
+	GoldenSolution: {
+		DisplayName: Golden Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Golden Set
+			'''
 	}
 
-	LivingWoodSolution: {
-		DisplayName: Living Wood Solution
-		Tooltip: ""
+	BaloonSolution: {
+		DisplayName: Baloon Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Baloon Set
+			'''
 	}
 
-	PalmWoodSolution: {
-		DisplayName: Palm Wood Solution
-		Tooltip: ""
+	BlueDungeonSolution: {
+		DisplayName: BlueDungeon Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into BlueDungeon Set
+			'''
 	}
 
-	PearlWoodSolution: {
-		DisplayName: Pearl Wood Solution
-		Tooltip: ""
+	GreenDungeonSolution: {
+		DisplayName: GreenDungeon Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into GreenDungeon Set
+			'''
 	}
 
-	RichMahoganySolution: {
-		DisplayName: Rich Mahogany Solution
-		Tooltip: ""
+	PinkDungeonSolution: {
+		DisplayName: PinkDungeon Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into PinkDungeon Set
+			'''
 	}
 
-	ShadeWoodSolution: {
-		DisplayName: Shade Wood Solution
-		Tooltip: ""
+	SolarSolution: {
+		DisplayName: Solar Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Solar Set
+			'''
 	}
 
-	SkookyWoodSolution: {
-		DisplayName: Skooky Wood Solution
-		Tooltip: ""
+	VortexSolution: {
+		DisplayName: Vortex Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Vortex Set
+			'''
+	}
+
+	NebulaSolution: {
+		DisplayName: Nebula Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Nebula Set
+			'''
+	}
+
+	StardustSolution: {
+		DisplayName: Stardust Solution
+		Tooltip:
+			'''
+			Used by the Clentaminator
+			Transform furnitures into Stardust Set
+			'''
 	}
 }
 
 Projectiles: {
-	SolarSolutionProjectile.DisplayName: Solar Solution Projectile
-	NebulaSolutionProjectile.DisplayName: Nebula Solution Projectile
-	StardustSolutionProjectile.DisplayName: Stardust Solution Projectile
-	VortexSolutionProjectile.DisplayName: Vortex Solution Projectile
-	WoodSolutionProjectile.DisplayName: Wood Solution Projectile
-	BaloonSolutionProjectile.DisplayName: Baloon Solution Projectile
-	GoldenSolutionProjectile.DisplayName: Golden Solution Projectile
-	BlueDungeonSolutionProjectile.DisplayName: Blue Dungeon Solution Projectile
-	GreenDungeonSolutionProjectile.DisplayName: Green Dungeon Solution Projectile
-	PinkDungeonSolutionProjectile.DisplayName: Pink Dungeon Solution Projectile
-	BoneSolutionProjectile.DisplayName: Bone Solution Projectile
-	CrystalSolutionProjectile.DisplayName: Crystal Solution Projectile
-	FleshSolutionProjectile.DisplayName: Flesh Solution Projectile
-	FrozenSolutionProjectile.DisplayName: Frozen Solution Projectile
-	GraniteSolutionProjectile.DisplayName: Granite Solution Projectile
-	LesionSolutionProjectile.DisplayName: Lesion Solution Projectile
-	MarbleSolutionProjectile.DisplayName: Marble Solution Projectile
-	ObsidianSolutionProjectile.DisplayName: Obsidian Solution Projectile
-	ReefSolutionProjectile.DisplayName: Reef Solution Projectile
-	SandstoneSolutionProjectile.DisplayName: Sandstone Solution Projectile
-	BambooSolutionProjectile.DisplayName: Bamboo Solution Projectile
-	CactusSolutionProjectile.DisplayName: Cactus Solution Projectile
-	MushroomSolutionProjectile.DisplayName: Mushroom Solution Projectile
-	PumpkinSolutionProjectile.DisplayName: Pumpkin Solution Projectile
-	GlassSolutionProjectile.DisplayName: Glass Solution Projectile
-	HoneySolutionProjectile.DisplayName: Honey Solution Projectile
-	LihzahrdSolutionProjectile.DisplayName: Lihzahrd Solution Projectile
-	MatrianSolutionProjectile.DisplayName: Matrian Solution Projectile
-	MetoriteSolutionProjectile.DisplayName: Metorite Solution Projectile
-	SkywareSolutionProjectile.DisplayName: Skyware Solution Projectile
-	SlimeSolutionProjectile.DisplayName: Slime Solution Projectile
-	SpiderSolutionProjectile.DisplayName: Spider Solution Projectile
-	SteampunkSolutionProjectile.DisplayName: Steampunk Solution Projectile
-	AshWoodSolutionProjectile.DisplayName: Ash Wood Solution Projectile
-	BorealWoodSolutionProjectile.DisplayName: Boreal Wood Solution Projectile
-	DynastyWoodSolutionProjectile.DisplayName: Dynasty Wood Solution Projectile
-	EbonWoodSolutionProjectile.DisplayName: Ebon Wood Solution Projectile
-	LivingWoodSolutionProjectile.DisplayName: Living Wood Solution Projectile
-	PalmWoodSolutionProjectile.DisplayName: Palm Wood Solution Projectile
-	PearlWoodSolutionProjectile.DisplayName: Pearl Wood Solution Projectile
-	RichMahoganySolutionProjectile.DisplayName: Rich Mahogany Solution Projectile
-	ShadeWoodSolutionProjectile.DisplayName: Shade Wood Solution Projectile
-	SkookyWoodSolutionProjectile.DisplayName: Skooky Wood Solution Projectile
+	WoodSolutionProjectile.DisplayName: Wood Solution
+	BorealWoodSolutionProjectile.DisplayName: BorealWood Solution
+	PalmWoodSolutionProjectile.DisplayName: PalmWood Solution
+	RichMahoganySolutionProjectile.DisplayName: RichMahogany Solution
+	ShadeWoodSolutionProjectile.DisplayName: ShadeWood Solution
+	EbonWoodSolutionProjectile.DisplayName: EbonWood Solution
+	PearlWoodSolutionProjectile.DisplayName: PearlWood Solution
+	AshWoodSolutionProjectile.DisplayName: AshWood Solution
+	SkookyWoodSolutionProjectile.DisplayName: SkookyWood Solution
+	DynastyWoodSolutionProjectile.DisplayName: DynastyWood Solution
+	LivingWoodSolutionProjectile.DisplayName: LivingWood Solution
+	BambooSolutionProjectile.DisplayName: Bamboo Solution
+	CactusSolutionProjectile.DisplayName: Cactus Solution
+	PumpkinSolutionProjectile.DisplayName: Pumpkin Solution
+	MushroomSolutionProjectile.DisplayName: Mushroom Solution
+	GraniteSolutionProjectile.DisplayName: Granite Solution
+	MarbleSolutionProjectile.DisplayName: Marble Solution
+	SandstoneSolutionProjectile.DisplayName: Sandstone Solution
+	FrozenSolutionProjectile.DisplayName: Frozen Solution
+	ReefSolutionProjectile.DisplayName: Reef Solution
+	LesionSolutionProjectile.DisplayName: Lesion Solution
+	FleshSolutionProjectile.DisplayName: Flesh Solution
+	BoneSolutionProjectile.DisplayName: Bone Solution
+	CrystalSolutionProjectile.DisplayName: Crystal Solution
+	ObsidianSolutionProjectile.DisplayName: Obsidian Solution
+	MatrianSolutionProjectile.DisplayName: Matrian Solution
+	MetoriteSolutionProjectile.DisplayName: Metorite Solution
+	SkywareSolutionProjectile.DisplayName: Skyware Solution
+	GlassSolutionProjectile.DisplayName: Glass Solution
+	LihzahrdSolutionProjectile.DisplayName: Lihzahrd Solution
+	SteampunkSolutionProjectile.DisplayName: Steampunk Solution
+	SpiderSolutionProjectile.DisplayName: Spider Solution
+	HoneySolutionProjectile.DisplayName: Honey Solution
+	SlimeSolutionProjectile.DisplayName: Slime Solution
+	GoldenSolutionProjectile.DisplayName: Golden Solution
+	BaloonSolutionProjectile.DisplayName: Baloon Solution
+	BlueDungeonSolutionProjectile.DisplayName: BlueDungeon Solution
+	GreenDungeonSolutionProjectile.DisplayName: GreenDungeon Solution
+	PinkDungeonSolutionProjectile.DisplayName: PinkDungeon Solution
+	SolarSolutionProjectile.DisplayName: Solar Solution
+	VortexSolutionProjectile.DisplayName: Vortex Solution
+	NebulaSolutionProjectile.DisplayName: Nebula Solution
+	StardustSolutionProjectile.DisplayName: Stardust Solution
 }

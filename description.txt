@@ -1,1 +1,32 @@
-Modify this file with a description of your mod.
+﻿每天用一样的家具太单调了，换一套家具又好麻烦？
+隆重向您介绍，家具溶液！！
+居住环境也是一种环境，自然也应该能被环境改造枪改造！
+
+绿溶液和相应的建筑块5份就可以制造一份溶液
+一共43套家具，相应地43种溶液
+只有家具套件中的家具物块墙壁会被替换
+如果当前溶液的家具套件中不含有某种家具则不会进行替换(比如骨头家具没有箱子)
+
+本模组出于好玩以及方便为目的
+请不要利用溶液来刷取物品(如四柱碎片)
+这样你还不如开作弊模组直接拿
+
+也许不支持多人
+
+The same furniture every day seems bring, 
+while it takes some effort to change a set?
+Introducing... Furniture Solution!!
+Living environment is some kind of environment as well,
+so it could be changed by Clentaminator!
+
+You can make a slotuion with a green solution and 5 building blocks
+There's 43 furniture sets in total, so there's 43 types of solutions.
+Only the tile or wall in furniture sets will be replaced.
+If current solution's set doesn't includes some furniture
+it will not be replaced(for example, Bone set doesn't have Chest)
+
+This mod is aimed for fun and convenient
+Please DONT use solution for more materials(like Stardust fragment)
+You can do faster with the mods like DragonLens or Hero's mod or CheatSheet
+
+Might NOT support multiplayer.

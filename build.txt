@@ -1,3 +1,4 @@
 displayName = 家具溶液Furniture Solution
 author = 不要用溶液刷材料！！
-version = 0.1
+version = 0.1.0.1
+homepage = https://github.com/LogSpiral/FurnitureSolution

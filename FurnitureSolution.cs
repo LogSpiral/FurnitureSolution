@@ -2,29 +2,32 @@ using FurnitureSolution.Solutions.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FurnitureSolution;
 
-// Please read https://github.com/tModLoader/tModLoader/wiki/Basic-tModLoader-Modding-Guide#mod-skeleton-contents for more information about the various files in a mod.
 public partial class FurnitureSolution : Mod
 {
-    public static short[,] FurnitureTable { get; private set; }
-    public static FurnitureSetData[] FurnitureSets { get; private set; }
-
-
+    internal static short[,] FurnitureTable { get; private set; }
+    internal static List<FurnitureSetData> FurnitureSets { get; private set; }
+    internal static Dictionary<string, int> FurnitureSetIndexDictionary { get; private set; } = [];
+    public static FurnitureSolution Instance { get; private set; }
     public override void Load()
     {
         InitializeFurnitureData();
         if (ModLoader.TryGetMod("TouhouPets", out var touhouPets))
             RegisterYukaSolution(touhouPets);
+
+        Instance = this;
         base.Load();
     }
 
     private void InitializeFurnitureData()
     {
         FurnitureTable = new short[43, 22];
-        FurnitureSets = new FurnitureSetData[43];
+        var vanillaFurnitureSets = new FurnitureSetData[43];
         string furnitureTableText = Encoding.UTF8.GetString(GetFileBytes("FurnitureTable.csv"));
         string[] lines = furnitureTableText.Split('\n');
         int counter = 0;
@@ -34,7 +37,7 @@ public partial class FurnitureSolution : Mod
         }
         foreach (string line in lines)
         {
-            ref FurnitureSetData furniture = ref FurnitureSets[counter];
+            ref FurnitureSetData furniture = ref vanillaFurnitureSets[counter];
             string[] contents = line.Replace(new string([(char)65279]), "").Split(','); // ¹µ²ÛµÄBOM
             for (int n = 0; n < 22; n++)
             {
@@ -140,32 +143,46 @@ public partial class FurnitureSolution : Mod
             }
             counter++;
         }
+
+        FurnitureSets = [.. vanillaFurnitureSets];
     }
 
-    public static HashSet<short> TileInSet { get; } = [];
-    public static HashSet<short> WallInSet { get; } = [];
-    public static HashSet<short> PlatformInSet { get; } = [];
-    public static HashSet<short> WorkbenchInSet { get; } = [];
-    public static HashSet<short> TableInSet { get; } = [];
-    public static HashSet<short> ChairInSet { get; } = [];
-    public static HashSet<short> DoorInSet { get; } = [];
-    public static HashSet<short> ChestInSet { get; } = [];
-    public static HashSet<short> BedInSet { get; } = [];
-    public static HashSet<short> BookcaseInSet { get; } = [];
-    public static HashSet<short> BathtubInSet { get; } = [];
-    public static HashSet<short> CandelabraInSet { get; } = [];
-    public static HashSet<short> CandleInSet { get; } = [];
-    public static HashSet<short> ChandelierInSet { get; } = [];
-    public static HashSet<short> ClockInSet { get; } = [];
-    public static HashSet<short> DresserInSet { get; } = [];
-    public static HashSet<short> LampInSet { get; } = [];
-    public static HashSet<short> LanternInSet { get; } = [];
-    public static HashSet<short> PianoInSet { get; } = [];
-    public static HashSet<short> SinkInSet { get; } = [];
-    public static HashSet<short> SofaInSet { get; } = [];
-    public static HashSet<short> ToiletInSet { get; } = [];
+    internal static HashSet<short> TileInSet { get; } = [];
+    internal static HashSet<short> WallInSet { get; } = [];
+    internal static HashSet<short> PlatformInSet { get; } = [];
+    internal static HashSet<short> WorkbenchInSet { get; } = [];
+    internal static HashSet<short> TableInSet { get; } = [];
+    internal static HashSet<short> ChairInSet { get; } = [];
+    internal static HashSet<short> DoorInSet { get; } = [];
+    internal static HashSet<short> ChestInSet { get; } = [];
+    internal static HashSet<short> BedInSet { get; } = [];
+    internal static HashSet<short> BookcaseInSet { get; } = [];
+    internal static HashSet<short> BathtubInSet { get; } = [];
+    internal static HashSet<short> CandelabraInSet { get; } = [];
+    internal static HashSet<short> CandleInSet { get; } = [];
+    internal static HashSet<short> ChandelierInSet { get; } = [];
+    internal static HashSet<short> ClockInSet { get; } = [];
+    internal static HashSet<short> DresserInSet { get; } = [];
+    internal static HashSet<short> LampInSet { get; } = [];
+    internal static HashSet<short> LanternInSet { get; } = [];
+    internal static HashSet<short> PianoInSet { get; } = [];
+    internal static HashSet<short> SinkInSet { get; } = [];
+    internal static HashSet<short> SofaInSet { get; } = [];
+    internal static HashSet<short> ToiletInSet { get; } = [];
 
 }
 
-
-
+#if DEBUG
+public class ViewPlayer : ModPlayer 
+{
+    public override void ResetEffects()
+    {
+        
+        if (Player.HeldItem.type == ItemID.None) 
+        {
+            var tile = Framing.GetTileSafely(Main.MouseWorld.ToTileCoordinates());
+            Main.NewText(tile);
+        }
+    }
+}
+#endif

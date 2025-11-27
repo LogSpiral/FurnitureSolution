@@ -1,4 +1,6 @@
-﻿namespace FurnitureSolution.Solutions.Core;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace FurnitureSolution.Solutions.Core;
 
 public struct FurnitureSetData
 {
@@ -60,7 +62,7 @@ public struct FurnitureSetData
     /// <summary>
     /// 烛台索引
     /// </summary>
-    public short CandelabraIndex { get;set; }
+    public short CandelabraIndex { get; set; }
 
     /// <summary>
     /// 蜡烛索引
@@ -111,4 +113,58 @@ public struct FurnitureSetData
     /// 马桶索引
     /// </summary>
     public short ToiletIndex { get; set; }
+
+    /// <summary>
+    /// 决定Index语义为PlaceStyle还是TileType<br/>
+    /// 原版采用PlaceStyle, 模组家具采用TileType<br/>
+    /// 虽然模组物块也可以有不同PlaceStyle但是不便于支持还请理解<br/>
+    /// <br/>
+    /// English:<br/>
+    /// <br/>
+    /// Determine the semantic of "Index" is "PlaceStyle" or "TileType"<br/>
+    /// PlaceStyle for vanilla while TileType for Mod-Furnitures<br/>
+    /// Although Mod-Tiles can have different PlaceStyles, but it is hard to support that.
+    /// </summary>
+    internal bool IsModFurnitureSet { get; set; }
+
+    /// <summary>
+    /// 仅对模组门有用<br/>
+    /// 因为原版门开关状态共享索引<br/>
+    /// <br/>
+    /// English:<br/>
+    /// <br/>
+    /// Only for modded doors<br/>
+    /// Since vanilla open or closed door share the same index.
+    /// </summary>
+    public short OpenDoorType { get; set; }
+
+    internal static FurnitureSetData FromArray(short[] array)
+    {
+        return new()
+        {
+            SolidTileType = array[0],
+            WallType = array[1],
+            PlatformIndex = array[2],
+            WorkbenchIndex = array[3],
+            TableIndex = array[4],
+            ChairIndex = array[5],
+            DoorIndex = array[6],
+            OpenDoorType = array[7],
+            ChestIndex = array[8],
+            BedIndex = array[9],
+            BookcaseIndex = array[10],
+            BathtubIndex = array[11],
+            CandelabraIndex = array[12],
+            CandleIndex = array[13],
+            ChandelierIndex = array[14],
+            ClockIndex = array[15],
+            DresserIndex = array[16],
+            LampIndex = array[17],
+            LanternIndex = array[18],
+            PianoIndex = array[19],
+            SinkIndex = array[20],
+            SofaIndex = array[21],
+            ToiletIndex = array[22]
+        };
+    }
 }

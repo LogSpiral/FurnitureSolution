@@ -8,7 +8,6 @@ namespace FurnitureSolution.Solutions.Core;
 
 public abstract partial class SolutionProjectileBase(int furnitureTableRowIndex) : ModProjectile
 {
-
     public override string Texture => $"{nameof(FurnitureSolution)}/Solutions/Core/SolutionSpray";
     public override void SetDefaults()
     {

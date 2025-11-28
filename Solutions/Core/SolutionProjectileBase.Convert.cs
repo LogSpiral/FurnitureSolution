@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -17,6 +18,7 @@ partial class SolutionProjectileBase
                 if (ConvertFurniture(k, l, FurnitureSolution.FurnitureSets[FurnitureTableRowIndex]))
                 {
                     WorldGen.SquareWallFrame(k, l);
+                    WorldGen.SquareTileFrame(k, l);
                     NetMessage.SendTileSquare(-1, k, l, 1);
                 }
             }
@@ -27,763 +29,270 @@ partial class SolutionProjectileBase
     {
         var tile = Framing.GetTileSafely(i, j);
         bool wallReplaced = false;
+
+        // 墙壁转换
         var wallIdx = furnitureSetData.WallType;
-        if (wallIdx != -1
+        if (wallIdx != ushort.MaxValue
             && wallIdx != (short)tile.WallType
-            && (FurnitureSolution.WallInSet.Contains((short)tile.WallType)
-            || FurnitureSolution.ModWallInSet.Contains((short)tile.WallType)))
+            && FurnitureSolution.WallInSet.Contains(tile.WallType))
         {
-            tile.WallType = (ushort)furnitureSetData.WallType;
+            tile.WallType = furnitureSetData.WallType;
             wallReplaced = true;
         }
+
+        // 物块转换
         var tileIdx = furnitureSetData.SolidTileType;
-        if (tileIdx != -1
+        if (tileIdx != ushort.MaxValue
             && tileIdx != (short)tile.TileType
-            && (FurnitureSolution.TileInSet.Contains((short)tile.TileType)
-            || FurnitureSolution.ModTileInSet.Contains((short)tile.TileType)))
+            && FurnitureSolution.TileInSet.Contains(tile.TileType))
         {
-            tile.TileType = (ushort)furnitureSetData.SolidTileType;
+            tile.TileType = furnitureSetData.SolidTileType;
             return true;
         }
-        switch (tile.TileType)
+
+        // 根据家具分类进行转换
+        static bool TryConvertByCategory(
+            Dictionary<ushort, HashSet<short>> categoryDictionary,
+            Tile tile,
+            int i,
+            int j,
+            ushort tileType,
+            short style,
+            in FurnitureFrameData frameData,
+            out bool succeed
+            )
         {
-            case TileID.Platforms:
-                {
-                    var idx = furnitureSetData.PlatformIndex;
-                    if (idx == -1) break;
+            succeed = false;
+            if (style == -1) return false;
+            if (tileType == ushort.MaxValue) return false;
+            if (!tile.HasTile) return true;
+            // 如果当前分类字典的物块类型里面没找到当前物块所属的就直接开溜
+            if (!categoryDictionary.TryGetValue(tile.TileType, out var set)) return false;
 
+            var data = frameData;
+            var prevData = frameData;
 
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (FurnitureSolution.PlatformInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
+            if (FurnitureSolution.FrameDataDictionary.TryGetValue(tile.TileType, out var frameDataPrevNew))
+                prevData = frameDataPrevNew;
 
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            tile.TileFrameY = 0;
-                            tile.TileType = (ushort)idx;
-                        }
-                        else
-                        {
-                            tile.TileFrameY = (short)(idx * 18);
-                        }
-                        return true;
-                    }
-                    break;
-                }
+            if (FurnitureSolution.FrameDataDictionary.TryGetValue(tileType, out var frameDataNew))
+                data = frameDataNew;
 
-            case TileID.WorkBenches:
-                {
-                    var idx = furnitureSetData.WorkbenchIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 2 == 1) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.WorkbenchInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        var rightTile = Framing.GetTileSafely(i + 1, j);
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
+            // 检测是否是锚点物块，仅在锚点上发生统一转换
+            if (!prevData.CheckAnchor(tile)) return true;
 
-                            tile.TileFrameX = 0;
-                            rightTile.TileFrameX = 18;
+            // 计算当前物块的style
+            int currentIndex = prevData.CalculateStyleIndex(tile);
 
-                            tile.TileType = (ushort)idx;
-                            rightTile.TileType = (ushort)idx;
-                        }
-                        else
-                        {
-                            tile.TileFrameX = (short)(idx * 36);
-                            rightTile.TileFrameX = (short)(idx * 36 + 18);
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Tables:
-            case TileID.Tables2:
-                {
-                    int idx = furnitureSetData.TableIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameY != 0) break;
-                    currentIndex /= 3;
-                    if (tile.TileType == TileID.Tables2)
-                        currentIndex += 100;
-                    if (FurnitureSolution.TableInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileType = (ushort)idx;
-                                    currentTile.TileFrameX = (short)(18 * (x + 1));
-                                }
-                        }
-                        else
-                        {
-                            bool isTable2 = idx >= 100;
-                            var tileType = isTable2 ? TileID.Tables2 : TileID.Tables;
-                            if (isTable2) idx -= 100;
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileType = tileType;
-                                    currentTile.TileFrameX = (short)(idx * 54 + 18 * (x + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Chairs:
-                {
-                    var idx = furnitureSetData.ChairIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 40;
-                    if (tile.TileFrameY % 40 == 18) break;
-                    if (FurnitureSolution.ChairInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        var tileDown = Framing.GetTileSafely(i, j + 1);
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            tile.TileFrameY = 0;
-                            tileDown.TileFrameY = 18;
+            // 检测是否需要发生转换
+            if (!set.Contains((short)currentIndex)
+                || (currentIndex == style
+                    && tile.TileType == tileType))
+                return false;
 
-                            tile.TileType = (ushort)idx;
-                            tileDown.TileType = (ushort)idx;
-                        }
-                        else
-                        {
-                            tile.TileFrameY = (short)(idx * 40);
-                            tileDown.TileFrameY = (short)(idx * 40 + 18);
-                        }
-                        return true;
-                    }
-                    else if (FurnitureSolution.ToiletInSet.Contains((short)(currentIndex + 100))
-                        && furnitureSetData.ToiletIndex is { } tolietIdx && tolietIdx != -1 && tolietIdx != currentIndex + 100)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(18 * y);
-                                currentTile.TileType = (ushort)tolietIdx;
-                            }
-                        }
-                        else
-                        {
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(tolietIdx * 40 + 18 * y);
-                                currentTile.TileType = TileID.Toilets;
-                            }
-                        }
-                    }
-                    break;
-                }
-            case TileID.ClosedDoor:
-                {
-                    int idx = furnitureSetData.DoorIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 3 != 1) break;
-                    currentIndex /= 3;
-                    currentIndex += tile.TileFrameX / 54 * 36;
-                    if (FurnitureSolution.DoorInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            int frameX = Main.rand.Next(3) * 18;
-                            for (int y = -1; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameX = (short)frameX;
-                                currentTile.TileFrameY = (short)(18 * (y + 1));
-                                currentTile.TileType = (ushort)idx;
-                            }
-                        }
-                        else
-                        {
-                            int frameX = idx >= 36 ? 54 : 0;
-                            frameX += Main.rand.Next(3) * 18;
-                            if (idx >= 36) idx -= 36;
-                            for (int y = -1; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameX = (short)frameX;
-                                currentTile.TileFrameY = (short)(idx * 54 + 18 * (y + 1));
-                            }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.OpenDoor:
-                {
-                    var idx = furnitureSetData.DoorIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 3 != 1) break;
-                    int tFrX = tile.TileFrameX % 72;
-                    if (tFrX is 18 or 36) break;
-                    currentIndex /= 3;
-                    currentIndex += tile.TileFrameX / 72 * 36;
-                    if (FurnitureSolution.DoorInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            int offX = tFrX is 0 ? 0 : -1;
-                            for (int x = 0; x < 2; x++)
-                                for (int y = -1; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x + offX, j + y);
-
-                                    currentTile.TileFrameX = (short)(currentTile.TileFrameX % 72);
-                                    currentTile.TileFrameY = (short)(18 * (y + 1));
-                                    currentTile.TileType = (ushort)furnitureSetData.OpenDoorType;
-                                }
-                        }
-                        else
-                        {
-                            int offX = tFrX is 0 ? 0 : -1;
-                            int frameX = idx >= 36 ? 72 : 0;
-                            if (idx >= 36) idx -= 36;
-                            for (int x = 0; x < 2; x++)
-                                for (int y = -1; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x + offX, j + y);
-
-                                    currentTile.TileFrameX = (short)(frameX + currentTile.TileFrameX % 72);
-                                    currentTile.TileFrameY = (short)(idx * 54 + 18 * (y + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Containers:
-            case TileID.Containers2:
-                {
-                    int idx = furnitureSetData.ChestIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 2 == 1) break;
-                    if (tile.TileFrameY != 0) break;
-                    currentIndex /= 2;
-                    if (tile.TileType == TileID.Containers2)
-                        currentIndex += 100;
-                    if (FurnitureSolution.ChestInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileType = (ushort)idx;
-                                    currentTile.TileFrameX = (short)(18 * x);
-                                }
-                        }
-                        else
-                        {
-                            bool isContainer2 = idx >= 100;
-                            var tileType = isContainer2 ? TileID.Containers2 : TileID.Containers;
-                            if (isContainer2) idx -= 100;
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileType = tileType;
-                                    currentTile.TileFrameX = (short)(idx * 36 + 18 * x);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Beds:
-                {
-                    var idx = furnitureSetData.BedIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 2 == 1) break;
-                    int tFrX = tile.TileFrameX % 72;
-                    if (tFrX is not 18) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.BedInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 3; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(18 * y);
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 3; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(idx * 36 + 18 * y);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Bookcases:
-                {
-                    int idx = furnitureSetData.BookcaseIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameY != 36) break;
-                    currentIndex /= 3;
-                    if (FurnitureSolution.BookcaseInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = -2; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(18 * (x + 1));
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = -2; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(idx * 54 + 18 * (x + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Bathtubs:
-                {
-                    var idx = furnitureSetData.BathtubIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 2 == 1) break;
-                    int tFrX = tile.TileFrameX % 72;
-                    if (tFrX is not 18) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.BathtubInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 3; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(18 * y);
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 3; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(idx * 36 + 18 * y);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Candelabras:
-                {
-                    var idx = furnitureSetData.CandelabraIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 2 == 1) break;
-                    int tFrX = tile.TileFrameX % 36;
-                    if (tFrX is not 0) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.CandelabraInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(18 * y);
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(idx * 36 + 18 * y);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Candles:
-                {
-                    var idx = furnitureSetData.CandleIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 22;
-                    if (FurnitureSolution.CandleInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            tile.TileFrameY = 0;
-                            tile.TileType = (ushort)idx;
-                        }
-                        else
-                        {
-                            tile.TileFrameY = (short)(22 * idx);
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Chandeliers:
-                {
-                    int idx = furnitureSetData.ChandelierIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameX % 108 != 18) break;
-                    currentIndex /= 3;
-
-                    currentIndex += tile.TileFrameX / 108 * 37;
-                    if (FurnitureSolution.ChandelierInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = -1; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(currentTile.TileFrameX % 108);
-                                    currentTile.TileFrameY = (short)(18 * (y + 1));
-
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            int frameX = idx >= 37 ? 108 : 0;
-                            if (idx >= 37) idx -= 37;
-                            for (int x = -1; x < 2; x++)
-                                for (int y = -1; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(frameX + currentTile.TileFrameX % 108);
-                                    currentTile.TileFrameY = (short)(idx * 54 + 18 * (y + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.GrandfatherClocks:
-                {
-                    var idx = furnitureSetData.ClockIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 2 == 1) break;
-                    if (tile.TileFrameY is not 36) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.ClockInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = -2; y < 3; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(18 * x);
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = -2; y < 3; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(idx * 36 + 18 * x);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Dressers:
-                {
-                    int idx = furnitureSetData.DresserIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameY != 0) break;
-                    currentIndex /= 3;
-                    if (FurnitureSolution.DresserInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(18 * (x + 1));
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(idx * 54 + 18 * (x + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Lamps:
-                {
-                    int idx = furnitureSetData.LampIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 3 != 1) break;
-                    currentIndex /= 3;
-                    if (FurnitureSolution.LampInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int y = -1; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(18 * (y + 1));
-                                currentTile.TileType = (ushort)idx;
-                            }
-                        }
-                        else
-                        {
-                            for (int y = -1; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(idx * 54 + 18 * (y + 1));
-                            }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.HangingLanterns:
-                {
-                    int idx = furnitureSetData.LanternIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 18;
-                    if (currentIndex % 2 == 1) break;
-                    currentIndex /= 2;
-                    if (FurnitureSolution.LanternInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(18 * y);
-                                currentTile.TileType = (ushort)idx;
-                            }
-                        }
-                        else
-                        {
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(idx * 36 + 18 * y);
-                            }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Pianos:
-                {
-                    int idx = furnitureSetData.PianoIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameY != 0) break;
-                    currentIndex /= 3;
-                    if (FurnitureSolution.PianoInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(18 * (x + 1));
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(idx * 54 + 18 * (x + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Sinks:
-                {
-                    var idx = furnitureSetData.SinkIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameY / 38;
-                    if (tile.TileFrameY % 38 == 18) break;
-                    if (tile.TileFrameX == 18) break;
-                    if (FurnitureSolution.SinkInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(18 * y);
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = 0; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameY = (short)(idx * 38 + 18 * y);
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Benches:
-                {
-                    int idx = furnitureSetData.SofaIndex;
-                    if (idx == -1) break;
-                    int currentIndex = tile.TileFrameX / 18;
-                    if (currentIndex % 3 != 1) break;
-                    if (tile.TileFrameY != 0) break;
-                    currentIndex /= 3;
-                    if (FurnitureSolution.SofaInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(18 * (x + 1));
-                                    currentTile.TileType = (ushort)idx;
-                                }
-                        }
-                        else
-                        {
-                            for (int x = -1; x < 2; x++)
-                                for (int y = 0; y < 2; y++)
-                                {
-                                    var currentTile = Framing.GetTileSafely(i + x, j + y);
-                                    currentTile.TileFrameX = (short)(idx * 54 + 18 * (x + 1));
-                                }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-            case TileID.Toilets:
-                {
-                    var idx = furnitureSetData.ToiletIndex;
-                    int currentIndex = tile.TileFrameY / 40;
-                    if (tile.TileFrameY % 40 == 18) break;
-                    if (FurnitureSolution.ToiletInSet.Contains((short)currentIndex)
-                        && currentIndex != idx)
-                    {
-                        if (furnitureSetData.IsModFurnitureSet)
-                        {
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(18 * y);
-                                currentTile.TileType = (ushort)idx;
-                            }
-                        }
-                        else
-                        {
-                            ushort tileType = TileID.Toilets;
-                            if (idx >= 100)
-                            {
-                                idx -= 100;
-                                tileType = TileID.Chairs;
-                            }
-                            for (int y = 0; y < 2; y++)
-                            {
-                                var currentTile = Framing.GetTileSafely(i, j + y);
-                                currentTile.TileFrameY = (short)(idx * 40 + 18 * y);
-                                currentTile.TileType = tileType;
-                            }
-                        }
-                        return true;
-                    }
-                    break;
-                }
-
+            // 转换
+            succeed = true;
+            data.Convert(i, j, tileType, style, prevData);
+            return true;
         }
+
+        #region 别展开，有古法源生
+
+        // C#没有宏太邪恶了
+        // 古法SourceGenerator启动
+
+        if (TryConvertByCategory(
+                FurnitureSolution.PlatformDictionary,
+                tile, i, j,
+                furnitureSetData.PlatformType,
+                furnitureSetData.PlatformIndex,
+                FurnitureFrameData.PlatformData,
+                out var succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.WorkbenchDictionary,
+                tile, i, j,
+                furnitureSetData.WorkbenchType,
+                furnitureSetData.WorkbenchIndex,
+                FurnitureFrameData.WorkbenchData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.TableDictionary,
+                tile, i, j,
+                furnitureSetData.TableType,
+                furnitureSetData.TableIndex,
+                FurnitureFrameData.TableData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.ChairDictionary,
+                tile, i, j,
+                furnitureSetData.ChairType,
+                furnitureSetData.ChairIndex,
+                FurnitureFrameData.ChairData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.DoorClosedDictionary,
+                tile, i, j,
+                furnitureSetData.ClosedDoorType,
+                furnitureSetData.DoorIndex,
+                FurnitureFrameData.ClosedDoorData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.DoorOpenDictionary,
+                tile, i, j,
+                furnitureSetData.OpenDoorType,
+                furnitureSetData.DoorIndex,
+                FurnitureFrameData.OpenDoorData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.ChestDictionary,
+                tile, i, j,
+                furnitureSetData.ChestType,
+                furnitureSetData.ChestIndex,
+                FurnitureFrameData.ChestData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.BedDictionary,
+                tile, i, j,
+                furnitureSetData.BedType,
+                furnitureSetData.BedIndex,
+                FurnitureFrameData.BedData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.BookcaseDictionary,
+                tile, i, j,
+                furnitureSetData.BookcaseType,
+                furnitureSetData.BookcaseIndex,
+                FurnitureFrameData.BookcaseData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.BathtubDictionary,
+                tile, i, j,
+                furnitureSetData.BathtubType,
+                furnitureSetData.BathtubIndex,
+                FurnitureFrameData.BathtubData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.CandelabraDictionary,
+                tile, i, j,
+                furnitureSetData.CandelabraType,
+                furnitureSetData.CandelabraIndex,
+                FurnitureFrameData.CandelabraData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.CandleDictionary,
+                tile, i, j,
+                furnitureSetData.CandleType,
+                furnitureSetData.CandleIndex,
+                FurnitureFrameData.CandleData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.ChandelierDictionary,
+                tile, i, j,
+                furnitureSetData.ChandelierType,
+                furnitureSetData.ChandelierIndex,
+                FurnitureFrameData.ChandelierData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.ClockDictionary,
+                tile, i, j,
+                furnitureSetData.ClockType,
+                furnitureSetData.ClockIndex,
+                FurnitureFrameData.ClockData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.DresserDictionary,
+                tile, i, j,
+                furnitureSetData.DresserType,
+                furnitureSetData.DresserIndex,
+                FurnitureFrameData.DresserData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.LampDictionary,
+                tile, i, j,
+                furnitureSetData.LampType,
+                furnitureSetData.LampIndex,
+                FurnitureFrameData.LampData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.LanternDictionary,
+                tile, i, j,
+                furnitureSetData.LanternType,
+                furnitureSetData.LanternIndex,
+                FurnitureFrameData.LanternData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.PianoDictionary,
+                tile, i, j,
+                furnitureSetData.PianoType,
+                furnitureSetData.PianoIndex,
+                FurnitureFrameData.PianoData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.SinkDictionary,
+                tile, i, j,
+                furnitureSetData.SinkType,
+                furnitureSetData.SinkIndex,
+                FurnitureFrameData.SinkData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.SofaDictionary,
+                tile, i, j,
+                furnitureSetData.SofaType,
+                furnitureSetData.SofaIndex,
+                FurnitureFrameData.SofaData,
+                out succeed))
+            return succeed || wallReplaced;
+
+        if (TryConvertByCategory(
+                FurnitureSolution.ToiletDictionary,
+                tile, i, j,
+                furnitureSetData.ToiletType,
+                furnitureSetData.ToiletIndex,
+                FurnitureFrameData.ToiletData,
+                out succeed))
+            return succeed || wallReplaced;
+
+
+        #endregion
+
         return wallReplaced;
     }
 }

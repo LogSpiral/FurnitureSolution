@@ -11,7 +11,7 @@
 请不要利用溶液来刷取物品(如四柱碎片)
 这样你还不如开作弊模组直接拿
 
-也许不支持多人
+目前不支持多人
 
 The same furniture every day seems bring, 
 while it takes some effort to change a set?
@@ -26,7 +26,7 @@ If current solution's set doesn't includes some furniture
 it will not be replaced(for example, Bone set doesn't have Chest)
 
 This mod is aimed for fun and convenient
-Please DONT use solution for more materials(like Stardust fragment)
+Please DONT use solution for more materials(like shimmering the furniture for more Stardust fragment)
 You can do faster with the mods like DragonLens or Hero's mod or CheatSheet
 
-Might NOT support multiplayer.
+Currently NOT support multiplayer.

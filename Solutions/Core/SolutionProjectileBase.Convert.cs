@@ -15,21 +15,24 @@ partial class SolutionProjectileBase
             {
                 if (!WorldGen.InWorld(k, l, 1) || Math.Abs(k - i) + Math.Abs(l - j) >= 6)
                     continue;
-                if (ConvertFurniture(k, l, FurnitureSolution.FurnitureSets[FurnitureTableRowIndex]))
+                if (ConvertFurniture(k, l, FurnitureSolution.FurnitureSets[FurnitureTableRowIndex], out bool wallReplaced))
                 {
-                    WorldGen.SquareWallFrame(k, l);
                     WorldGen.SquareTileFrame(k, l);
-                    NetMessage.SendTileSquare(-1, k, l, 1);
+                    if (wallReplaced) 
+                    {
+                        WorldGen.SquareWallFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
                 }
             }
         }
     }
 
-    private static bool ConvertFurniture(int i, int j, in FurnitureSetData furnitureSetData)
+    private static bool ConvertFurniture(int i, int j, in FurnitureSetData furnitureSetData, out bool wallReplaced)
     {
         var tile = Framing.GetTileSafely(i, j);
-        bool wallReplaced = false;
-
+        // bool wallReplaced = false;
+        wallReplaced = false;
         // 墙壁转换
         var wallIdx = furnitureSetData.WallType;
         if (wallIdx != ushort.MaxValue
@@ -47,6 +50,7 @@ partial class SolutionProjectileBase
             && FurnitureSolution.TileInSet.Contains(tile.TileType))
         {
             tile.TileType = furnitureSetData.SolidTileType;
+            NetMessage.SendTileSquare(-1, i, j, 1);
             return true;
         }
 
@@ -292,7 +296,6 @@ partial class SolutionProjectileBase
 
 
         #endregion
-
         return wallReplaced;
     }
 }

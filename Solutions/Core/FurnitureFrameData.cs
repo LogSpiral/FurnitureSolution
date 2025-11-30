@@ -76,6 +76,14 @@ public class FurnitureFrameData
                 currentTile.TileFrameY += (short)(UnitHeight * frameY);
             }
         }
+        int x0 = i;
+        int y0 = j;
+        if (AnchorX > 0)
+            x0 -= AnchorX;
+        if (AnchorY > 0)
+            y0 -= AnchorY;
+        NetMessage.SendTileSquare(-1, x0, y0, WidthTileCount, HeightTileCount);
+
     }
 
     public static FurnitureFrameData FromArray(object[] array)
